@@ -783,3 +783,30 @@ em{background:none;-webkit-text-fill-color:currentColor;color:var(--green-glow)}
 
 /* 3. the hero settles into black through a deep green-black instead of a hard edge */
 .hero::after{content:"";position:absolute;z-index:-1;left:0;right:0;bottom:0;height:160px;background:linear-gradient(180deg,rgba(6,19,13,0),#07130e 65%,#060908);pointer-events:none}
+
+/* ===== v10: header scrolls away; slim section strip with underline for the current section ===== */
+.site-header{position:relative}
+html{scroll-padding-top:64px}
+
+.section-nav{position:fixed;top:0;left:0;right:0;z-index:55;height:52px;background:rgba(6,9,8,.97);border-bottom:1px solid var(--line);transform:translateY(-104%);visibility:hidden;transition:transform .35s cubic-bezier(.2,.7,.2,1),visibility 0s .35s}
+.section-nav.show{transform:none;visibility:visible;transition:transform .35s cubic-bezier(.2,.7,.2,1),visibility 0s}
+.sn-wrap{display:flex;align-items:center;gap:18px;height:100%}
+.sn-home{flex:none;display:flex;align-items:center}
+.sn-home img{height:24px;width:auto;filter:brightness(0) invert(1);opacity:.9}
+.sn-list{display:flex;align-items:stretch;gap:2px;height:100%;min-width:0;max-width:100%;margin-inline:auto;list-style:none;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.sn-list::-webkit-scrollbar{display:none}
+.sn-list li{display:flex}
+.sn-link{position:relative;display:flex;align-items:center;padding:0 14px;font-size:14px;font-weight:500;color:var(--muted);white-space:nowrap;transition:color .2s}
+.sn-link::after{content:"";position:absolute;left:14px;right:14px;bottom:0;height:2px;background:var(--green-bright);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.sn-link:hover{color:#fff}
+.sn-link.active{color:var(--text)}
+.sn-link.active::after{transform:scaleX(1)}
+.sn-wrap::after{content:"";flex:none;width:24px}
+@media (max-width:640px){
+  .sn-home{display:none}
+  .sn-wrap::after{display:none}
+  .sn-link{padding:0 12px;font-size:13.5px}
+  .sn-link::after{left:12px;right:12px}
+  .sn-list{margin-inline:0}
+}
+@media (prefers-reduced-motion:reduce){.section-nav,.section-nav.show{transition:none}}

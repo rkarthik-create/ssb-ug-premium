@@ -95,6 +95,37 @@
     nums.forEach(function (n) { co.observe(n); });
   }
 
+  // section strip: appears once the hero has scrolled away, underlines the section you are in
+  var sn = document.getElementById('section-nav');
+  if (sn) {
+    var snLinks = [].slice.call(sn.querySelectorAll('a[data-spy]'));
+    var snTargets = snLinks.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+    var snList = sn.querySelector('.sn-list');
+    var snHero = document.querySelector('.hero');
+    var snLast = null;
+    var spy = function () {
+      var show = snHero ? snHero.getBoundingClientRect().bottom < 40 : window.scrollY > 200;
+      sn.classList.toggle('show', show);
+      var active = -1;
+      snTargets.forEach(function (t, i) { if (t && t.getBoundingClientRect().top <= 150) active = i; });
+      snLinks.forEach(function (l, i) {
+        var on = i === active;
+        l.classList.toggle('active', on);
+        if (on) l.setAttribute('aria-current', 'true'); else l.removeAttribute('aria-current');
+      });
+      var cur = active >= 0 ? snLinks[active] : null;
+      if (cur !== snLast) {
+        snLast = cur;
+        if (cur && snList.scrollWidth > snList.clientWidth) { // phones: keep the active item centred
+          snList.scrollTo({ left: cur.offsetLeft - (snList.clientWidth - cur.offsetWidth) / 2, behavior: 'smooth' });
+        }
+      }
+    };
+    window.addEventListener('scroll', spy, { passive: true });
+    window.addEventListener('resize', spy);
+    spy();
+  }
+
   // sticky bottom "Join the early waitlist" bar: shows once the hero buttons have scrolled away,
   // hides again when the closing call-to-action or footer is on screen
   var bar = document.getElementById('sticky-cta');
