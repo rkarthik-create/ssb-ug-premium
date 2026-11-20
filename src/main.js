@@ -94,4 +94,21 @@
     }, { threshold: 0.6 });
     nums.forEach(function (n) { co.observe(n); });
   }
+
+  // sticky bottom "Join the early waitlist" bar: shows once the hero buttons have scrolled away,
+  // hides again when the closing call-to-action or footer is on screen
+  var bar = document.getElementById('sticky-cta');
+  if (bar) {
+    var heroCta = document.querySelector('.hero .cta-row');
+    var endEls = document.querySelectorAll('.final, .footer');
+    var update = function () {
+      var past = heroCta ? heroCta.getBoundingClientRect().bottom < 0 : window.scrollY > 400;
+      var atEnd = [].some.call(endEls, function (n) { return n.getBoundingClientRect().top < window.innerHeight - 80; });
+      bar.classList.toggle('show', past && !atEnd);
+    };
+    var onScroll = update; // cheap enough to run on every scroll event
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    update();
+  }
 })();
