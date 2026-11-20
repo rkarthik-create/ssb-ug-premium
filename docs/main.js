@@ -107,7 +107,7 @@
       var show = snHero ? snHero.getBoundingClientRect().bottom < 40 : window.scrollY > 200;
       sn.classList.toggle('show', show);
       var active = -1;
-      snTargets.forEach(function (t, i) { if (t && t.getBoundingClientRect().top <= 150) active = i; });
+      snTargets.forEach(function (t, i) { if (t && t.getBoundingClientRect().top <= window.innerHeight * 0.4) active = i; });
       snLinks.forEach(function (l, i) {
         var on = i === active;
         l.classList.toggle('active', on);
