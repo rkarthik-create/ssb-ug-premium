@@ -770,3 +770,16 @@ em{background:none;-webkit-text-fill-color:currentColor;color:var(--green-glow)}
 .kicker{color:var(--green-glow)}
 .kicker::before{background:var(--green-glow);opacity:.6}
 .pulse{box-shadow:0 0 0 3px rgba(255,255,255,.2)}
+
+/* ===== v9: subtle black gradients (undo: git revert this commit, or the before-black-gradient tag) ===== */
+/* 1. gentle depth shift: every other section sits on a slightly lifted forest-black band with soft edges */
+.section:nth-of-type(even){background-image:linear-gradient(180deg,rgba(10,17,14,0) 0,#0a110e 160px,#0a110e calc(100% - 120px),rgba(10,17,14,0) 100%)}
+
+/* 2. faint emerald spotlights behind a few key moments */
+.stats{background-image:radial-gradient(760px 280px at 14% 0%,rgba(12,157,96,.13),transparent 70%)}
+#outcomes{background-image:radial-gradient(900px 520px at 100% 62%,rgba(12,157,96,.10),transparent 70%),linear-gradient(180deg,rgba(10,17,14,0) 0,#0a110e 160px,#0a110e calc(100% - 120px),rgba(10,17,14,0) 100%)}
+#careers{position:relative;isolation:isolate}
+#careers::before{content:"";position:absolute;z-index:-1;left:0;right:0;top:-60px;height:560px;background:radial-gradient(560px 340px at 72% 40%,rgba(12,157,96,.12),transparent 70%);pointer-events:none}
+
+/* 3. the hero settles into black through a deep green-black instead of a hard edge */
+.hero::after{content:"";position:absolute;z-index:-1;left:0;right:0;bottom:0;height:160px;background:linear-gradient(180deg,rgba(6,19,13,0),#07130e 65%,#060908);pointer-events:none}
