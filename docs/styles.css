@@ -558,3 +558,106 @@ tr.total td{background:rgba(12,157,96,.1);font-weight:700}
   .tile.sm{grid-template-columns:150px minmax(0,1fr);gap:14px}
   .tile.sm .num{font-size:28px}
 }
+
+/* ===== v4: alumni / faculty / mentors cards, breathing room, compact mobile ===== */
+
+/* header: short deadline text on small screens */
+.dl-short{display:none}
+
+/* hero facts: three small boxes in one row (all screen sizes) */
+.facts{grid-template-columns:repeat(3,1fr);gap:12px;border-top:0;padding-top:0;margin-top:56px}
+.facts>div{padding:18px 20px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.04);backdrop-filter:blur(8px)}
+.facts b{font-size:22px}
+.facts span{display:block;margin-top:4px;font-size:13px;line-height:1.4}
+
+/* backed by: 3 logos in one row */
+.backers{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:center;justify-items:center;max-width:620px;margin:22px auto 0}
+.backers img{height:28px;max-width:100%;object-fit:contain}
+.backers span{font-size:19px;white-space:nowrap}
+
+/* bento: wrapper disappears on desktop, becomes a swipe row on phones */
+.bento-sm{display:contents}
+
+/* alumni cards (horizontal scroll, two rows) */
+.bleed{width:100%}
+.rail.alumni-rail{display:grid;grid-auto-flow:column;grid-template-rows:repeat(2,auto);grid-auto-columns:300px;gap:14px;list-style:none;padding:4px max(24px,calc((100vw - 1200px)/2)) 18px;scroll-padding-left:max(24px,calc((100vw - 1200px)/2))}
+.bleed .car-nav{padding-inline:max(24px,calc((100vw - 1200px)/2))}
+.alumni-card{position:relative;aspect-ratio:3/2;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#0b120f;transition:transform .35s,border-color .35s}
+.alumni-card:hover{transform:translateY(-4px);border-color:rgba(61,240,164,.4)}
+.alumni-card::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,8,7,0) 18%,rgba(5,8,7,.8) 48%,rgba(5,8,7,.94))}
+.ac-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:left center}
+.ac-body{position:absolute;z-index:2;top:0;bottom:0;left:43%;right:12px;display:flex;flex-direction:column;justify-content:center;gap:9px}
+.ac-name{font-size:12px;color:#dbe6df;font-weight:500}
+.ac-role{font-size:16px;line-height:1.2;font-weight:600;letter-spacing:-.01em}
+.ac-path{display:flex;flex-direction:column;gap:3px;margin-top:2px}
+.ac-step{display:flex;gap:8px;align-items:center;min-width:0}
+.ac-step>span:last-child{min-width:0}
+.ac-tile{width:26px;height:26px;border-radius:7px;background:#fff;display:grid;place-items:center;flex:none;overflow:hidden}
+.ac-tile img{max-width:80%;max-height:80%;object-fit:contain}
+.ac-pre{background:rgba(255,255,255,.2);color:#fff}
+.ac-letter{color:#111;font-weight:700;font-size:13px}
+.ac-step small{display:block;font-size:8.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);line-height:1.2}
+.ac-step b{display:block;font-size:10.5px;font-weight:600;line-height:1.2;color:#fff}
+.ac-arrow{display:flex;flex-direction:column;align-items:center;width:26px;color:var(--muted);line-height:0;gap:0}
+.ac-arrow svg{margin:-3px 0}
+
+/* faculty + mentors: drifting rows of photo cards */
+.drift{overflow:hidden;display:grid;gap:14px;mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.drift-row{display:flex;width:max-content;animation:driftL var(--dur,120s) linear infinite}
+.drift-row.rev{animation-direction:reverse}
+.drift:hover .drift-row{animation-play-state:paused}
+@keyframes driftL{to{transform:translateX(-50%)}}
+.drift-set{display:flex;gap:14px;padding-right:14px;list-style:none}
+.fc{position:relative;width:250px;aspect-ratio:4/5;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#0b120f}
+.fc-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top}
+.fc::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 38%,rgba(3,5,4,.95) 80%)}
+.fc-body{position:absolute;z-index:2;left:0;right:0;bottom:0;padding:16px}
+.fc-body h3{font-size:16px;line-height:1.2;letter-spacing:-.01em;font-weight:600}
+.fc-by{font-size:12.5px;color:var(--muted);margin-top:2px}
+.fc-body hr{border:0;border-top:1px solid var(--line-2);margin:10px 0}
+.fc-cred{font-size:12px;line-height:1.35;color:#c5d3cb}
+.fc-co{display:inline-flex;align-items:center;gap:8px;margin-top:10px;font-size:12px;font-weight:600}
+.fc-mark{width:22px;height:22px;border-radius:6px;background:#fff;display:grid;place-items:center;overflow:hidden;flex:none}
+.fc-mark img{max-width:80%;max-height:80%;object-fit:contain}
+@media (prefers-reduced-motion:reduce){.drift{overflow-x:auto}.drift-row{animation:none}}
+
+/* ---------- phones ---------- */
+@media (max-width:640px){
+  /* one-line sticky deadline: more room for content */
+  .dl-long{display:none}
+  .dl-short{display:inline}
+  .deadline{font-size:12px;padding:6px 12px}
+
+  /* hero: more breathing room */
+  .hero{padding:72px 0 64px}
+  .eyebrow{font-size:10.5px;letter-spacing:.09em;padding:8px 14px}
+  .hero-title{margin:30px 0 22px;line-height:1.08}
+  .lede{line-height:1.6}
+  .chips{gap:10px;margin:30px 0 38px}
+  .chips li{font-size:13px;padding:9px 14px 9px 30px}
+  .cta-row{gap:14px}
+  .facts{gap:8px;margin-top:52px}
+  .facts>div{padding:14px 10px;text-align:center}
+  .facts b{font-size:15px;letter-spacing:-.01em}
+  .facts span{font-size:11px;line-height:1.35}
+  .backers{gap:10px}
+  .backers img{height:22px}
+  .backers span{font-size:15px}
+
+  /* career prospects: compact. small tiles become one swipe row */
+  .bento{gap:12px}
+  .t-wide{min-height:250px}
+  .t-tall{min-height:290px}
+  .bento-sm{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 2px 14px;margin:0 -2px;scrollbar-width:none}
+  .bento-sm::-webkit-scrollbar{display:none}
+  .bento-sm .tile.sm{flex:0 0 88%;scroll-snap-align:start}
+
+  /* people cards */
+  .rail.alumni-rail{grid-auto-columns:268px;padding-inline:16px;scroll-padding-left:16px}
+  .bleed .car-nav{padding-inline:16px}
+  .fc{width:210px}
+}
+
+@media (max-width:640px){
+  .eyebrow{font-size:10px;letter-spacing:.06em;white-space:nowrap}
+}
