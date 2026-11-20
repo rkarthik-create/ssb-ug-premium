@@ -696,3 +696,8 @@ tr.total td{background:rgba(12,157,96,.1);font-weight:700}
 @media (max-width:640px){
   .hero-title{font-size:36px;line-height:1.1}
 }
+
+/* ===== v7: calmer header (no pulsing dot, no live blur while scrolling) ===== */
+.pulse{animation:none;box-shadow:0 0 0 3px rgba(255,255,255,.25)}
+.nav-wrap{background:rgba(5,8,7,.95);backdrop-filter:none;-webkit-backdrop-filter:none}
+@media (max-width:640px){.orb{animation:none}}
