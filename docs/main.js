@@ -30,14 +30,40 @@
   }
 
   // curriculum tabs
-  var tabs = document.querySelectorAll('.tabs button');
-  tabs.forEach(function (t) {
-    t.addEventListener('click', function () {
-      tabs.forEach(function (x) { x.setAttribute('aria-selected', 'false'); });
-      t.setAttribute('aria-selected', 'true');
-      document.querySelectorAll('.panel').forEach(function (p) { p.classList.remove('active'); });
-      document.getElementById(t.dataset.tab).classList.add('active');
+  document.querySelectorAll('.tabgroup').forEach(function (group) {
+    var btns = group.querySelectorAll('.tabs button');
+    btns.forEach(function (t) {
+      t.addEventListener('click', function () {
+        btns.forEach(function (x) { x.setAttribute('aria-selected', 'false'); });
+        t.setAttribute('aria-selected', 'true');
+        group.querySelectorAll('.panel').forEach(function (p) { p.classList.remove('active'); });
+        document.getElementById(t.dataset.tab).classList.add('active');
+        window.dispatchEvent(new Event('resize')); // let carousels in the newly shown panel refresh their buttons
+      });
     });
+  });
+
+  // carousels: add prev/next buttons under each rail
+  document.querySelectorAll('.carousel').forEach(function (c) {
+    var rail = c.querySelector('.rail');
+    if (!rail) return;
+    var nav = document.createElement('div');
+    nav.className = 'car-nav';
+    nav.innerHTML = '<button type="button" aria-label="Previous" disabled>←</button><button type="button" aria-label="Next">→</button>';
+    c.appendChild(nav);
+    var prev = nav.children[0], next = nav.children[1];
+    function step() { return Math.max(rail.clientWidth * 0.8, 260); }
+    function sync() {
+      if (!rail.clientWidth) return; // hidden tab panel: leave buttons alone until it is shown
+      prev.disabled = rail.scrollLeft < 8;
+      next.disabled = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 8;
+    }
+    prev.addEventListener('click', function () { rail.scrollBy({ left: -step(), behavior: 'smooth' }); });
+    next.addEventListener('click', function () { rail.scrollBy({ left: step(), behavior: 'smooth' }); });
+    rail.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', sync);
+    if (window.ResizeObserver) new ResizeObserver(sync).observe(rail); // fires when a hidden tab panel becomes visible
+    sync();
   });
 
   // cursor glow on cards
