@@ -701,3 +701,72 @@ tr.total td{background:rgba(12,157,96,.1);font-weight:700}
 .pulse{animation:none;box-shadow:0 0 0 3px rgba(255,255,255,.25)}
 .nav-wrap{background:rgba(5,8,7,.95);backdrop-filter:none;-webkit-backdrop-filter:none}
 @media (max-width:640px){.orb{animation:none}}
+
+/* ===== v8: refined palette (quieter green, cream type, flatter surfaces) =====
+   To undo: git revert this commit, or git checkout before-refined-palette -- src docs */
+:root{
+  --green:#0C9D60;            /* brand emerald: buttons, ticks, marks */
+  --green-bright:#19b374;
+  --green-glow:#86d9b4;       /* soft mint: used only for small accents */
+  --green-deep:#065f3a;
+  --ink-0:#060908;
+  --text:#ece8df;             /* warm cream instead of pure white */
+  --muted:#a3b0a9;
+  --line:rgba(255,255,255,.08);
+  --line-2:rgba(255,255,255,.14);
+  --card:rgba(255,255,255,.028);
+}
+body{
+  background:
+    radial-gradient(1200px 700px at 85% -10%,rgba(12,157,96,.09),transparent 60%),
+    radial-gradient(900px 600px at -10% 40%,rgba(12,157,96,.05),transparent 60%),
+    linear-gradient(180deg,#060908 0%,#09100d 45%,#060908 100%);
+  background-color:var(--ink-0);
+}
+
+/* headings: cream, not stark white; accent words a calm mint, no gradient */
+h1,h2,h3,h4{color:var(--text)}
+.hero-title{background:linear-gradient(180deg,#f4f0e7 35%,#bdb9ad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+em{background:none;-webkit-text-fill-color:currentColor;color:var(--green-glow)}
+.hero-title em{-webkit-text-fill-color:var(--green-glow)}
+.stat b,.tile .num,.big-num{background:linear-gradient(180deg,#f4f0e7,#cfe3d8);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+/* header + deadline bar: deeper, calmer green */
+.deadline{background:#0a6b43;color:#e9f6ef}
+.tag,.pill{color:#a9e3c7;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
+.links a.active{color:var(--green-glow)}
+
+/* buttons: solid emerald, soft shadow, no neon ring */
+.btn-primary{color:#03140c;background:linear-gradient(180deg,#1bb673,#0C9D60);box-shadow:0 10px 26px -12px rgba(12,157,96,.7)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 30px -12px rgba(12,157,96,.85)}
+.btn-ghost{backdrop-filter:none;background:rgba(255,255,255,.03)}
+.sticky-cta .btn{box-shadow:0 12px 30px -10px rgba(12,157,96,.75)}
+
+/* atmosphere: far less glow */
+.hero-veil{background:linear-gradient(180deg,rgba(3,5,4,.55) 0%,rgba(3,5,4,.82) 60%,#060908 100%),radial-gradient(900px 500px at 20% 10%,rgba(12,157,96,.14),transparent 65%)}
+.orb{opacity:.22}
+.grid-tex{opacity:.22}
+.final-bg::after{background:radial-gradient(800px 500px at 50% 100%,rgba(12,157,96,.28),transparent 70%),linear-gradient(180deg,#060908,rgba(6,9,8,.7) 40%,#060908)}
+.glow::before{display:none}
+.eyebrow{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12)}
+
+/* surfaces: flat with hairlines instead of glass; neutral hover */
+.facts>div,.biz,.card,.stat,.tile,.oc,.person,.pcard,.mentor,.alumni-card,.path,.step,.win,.built figure,.mini-wins>div{backdrop-filter:none;-webkit-backdrop-filter:none}
+.card:hover,.oc:hover,.person:hover,.pcard:hover,.mentor:hover,.tile:hover,.alumni-card:hover,.path:hover,.win:hover,.biz:hover,.built figure:hover,.stories figure:hover,.pillar:hover{border-color:rgba(255,255,255,.24)}
+.stat::before{background:linear-gradient(90deg,rgba(12,157,96,.9),transparent)}
+.card ul li::before,.inline li::before,.notes li::before{background:var(--green)}
+
+/* small marks that were neon */
+.tabs button[aria-selected=true],.step i,.play,.play.sm{background:linear-gradient(180deg,#1bb673,#0C9D60);color:#03140c;box-shadow:none}
+.play,.play.sm{box-shadow:0 0 0 6px rgba(12,157,96,.2)}
+.tabs button i{color:var(--green-glow)}
+.tabs button[aria-selected=true] i{color:#03140c}
+.car-nav button:hover{background:#0C9D60;color:#03140c}
+.pimg::after{background:linear-gradient(180deg,transparent 55%,rgba(3,5,4,.55))}
+.pbadge{background:rgba(236,232,223,.92);color:#065f3a}
+.pillar ul li::before{border-color:var(--green-bright)}
+.timeline::before{background:linear-gradient(90deg,var(--green-glow),rgba(134,217,180,.1))}
+.timeline li::before{box-shadow:none;border-color:var(--green-glow)}
+.kicker{color:var(--green-glow)}
+.kicker::before{background:var(--green-glow);opacity:.6}
+.pulse{box-shadow:0 0 0 3px rgba(255,255,255,.2)}
