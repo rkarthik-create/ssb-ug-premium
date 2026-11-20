@@ -509,3 +509,52 @@ tr.total td{background:rgba(12,157,96,.1);font-weight:700}
   .rail>*{flex-basis:78%}
   .page-hero{padding:56px 0 48px}
 }
+
+/* ===== v3: pillars as in the reference, 2-column small tiles, white recruiter wall ===== */
+.pillar{padding:0;display:flex;flex-direction:column}
+.pillar .pimg{aspect-ratio:16/9}
+.pillar .pimg::after{background:linear-gradient(180deg,transparent 55%,rgba(3,5,4,.55))}
+.pbadge{position:absolute;z-index:2;left:12px;top:12px;font-size:12px;font-weight:600;padding:2px 9px;border-radius:7px;background:rgba(255,255,255,.92);color:#065f3a}
+.pillar .pbody{padding:20px 22px 24px;display:flex;flex-direction:column;flex:1}
+.pillar h3{font-size:18px;font-weight:600;line-height:1.3;letter-spacing:-.01em;margin:0}
+.pillar .card-sub{font-size:14px;color:var(--muted);margin:6px 0 0}
+.pillar ul{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);display:grid;gap:10px}
+.pillar ul li{border:0;padding:0 0 0 26px;font-size:14px;line-height:1.4;color:#c5d3cb;position:relative}
+.pillar ul li::before{content:"";position:absolute;left:4px;top:3px;width:5px;height:10px;border:solid var(--green-bright);border-width:0 2px 2px 0;border-radius:0;background:none;transform:rotate(45deg)}
+
+/* small bento tiles: big number left, text right, vertically centred */
+.tile.sm{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;justify-content:initial;gap:22px;padding:26px 28px}
+.tile.sm .num{margin:0;font-size:clamp(28px,2.7vw,38px);white-space:nowrap}
+.tile.sm .t-txt{display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-width:0}
+.tile.sm .t-txt p{margin:0;font-size:14px}
+.tile.sm .t-txt strong{font-size:15px;font-weight:600}
+.tile.sm .flags{margin-top:2px}
+
+/* recruiter network: white grid with colour logos, 8 across */
+.logo-wall{grid-template-columns:repeat(8,1fr);gap:1px;background:#dfe5e1;border:0;border-radius:var(--radius);overflow:hidden}
+.logo-wall>img{background:#fff;filter:none;opacity:1;width:100%;height:84px;max-width:none;max-height:none;aspect-ratio:auto;object-fit:contain;box-sizing:border-box;padding:24px 20px;margin:0}
+.logo-wall>img:hover{opacity:1;background:#f6faf8}
+
+@media (max-width:1080px){
+  .logo-wall{grid-template-columns:repeat(6,1fr)}
+  .tile.sm{padding:24px}
+}
+@media (max-width:640px){
+  .logo-wall{grid-template-columns:repeat(3,1fr)}
+  .logo-wall>img{height:68px;padding:18px 14px}
+  .tile.sm{gap:18px;padding:22px 20px}
+  .tile.sm .num{font-size:30px}
+}
+
+@media (max-width:640px){
+  .bento{grid-auto-rows:auto}
+  .tile.sm{min-height:0}
+}
+
+/* aligned 2-column small tiles */
+.tile.sm{grid-template-columns:172px minmax(0,1fr)}
+.tile.sm .num{font-size:30px}
+@media (max-width:640px){
+  .tile.sm{grid-template-columns:150px minmax(0,1fr);gap:14px}
+  .tile.sm .num{font-size:28px}
+}
