@@ -680,3 +680,19 @@ tr.total td{background:rgba(12,157,96,.1);font-weight:700}
   .sticky-cta .btn{width:auto;padding:16px 32px}
 }
 @media (prefers-reduced-motion:reduce){.sticky-cta,.sticky-cta.show{transition:none}}
+
+/* ===== v6: phone hero spacing to match the approved mockup ===== */
+@media (max-width:640px){
+  .hero{padding:56px 0 30px}
+  .hero-title{margin:0 0 64px}
+  .hero .cta-row{margin-top:52px;gap:18px}
+  .facts{margin-top:36px}
+}
+
+@media (max-width:640px){
+  .hero .cta-row{margin-top:58px;gap:20px}
+}
+
+@media (max-width:640px){
+  .hero-title{font-size:36px;line-height:1.1}
+}
