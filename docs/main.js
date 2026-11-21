@@ -143,3 +143,11 @@
     update();
   }
 })();
+
+// pillar cards: "see how it works" opens the matching curriculum tab
+document.querySelectorAll('a[data-gotab]').forEach(function (a) {
+  a.addEventListener('click', function () {
+    var b = document.querySelector('#curriculum [data-tab="' + a.getAttribute('data-gotab') + '"]');
+    if (b) b.click();
+  });
+});

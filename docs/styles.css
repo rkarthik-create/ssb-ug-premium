@@ -889,3 +889,12 @@ html{scroll-padding-top:64px}
 .logo-wall>img{border:1px solid #dde4e0;border-radius:14px;box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 6px 18px rgba(0,0,0,.18);transition:transform .25s,box-shadow .25s,background .25s}
 .logo-wall>img:hover{transform:translateY(-2px);box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 10px 24px rgba(0,0,0,.28)}
 @media (max-width:640px){.logo-wall{gap:10px}.logo-wall>img{border-radius:12px}}
+
+/* ===== v16: pillar cards link through to the curriculum ===== */
+.pmore{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:14px;font-weight:600;color:var(--green-glow);transition:gap .2s,color .2s}
+.pmore:hover{gap:10px;color:#fff}
+
+/* ===== v17: guest-session photos were being squashed by the logo-strip rule (.track img{height:30px}) ===== */
+.track.half .person>img{height:auto;aspect-ratio:4/3.3;object-fit:cover;opacity:1}
+.track.half .person .who img{height:42px;width:42px;opacity:1;object-fit:cover;border-radius:50%}
+.track.half .person .who img{filter:none}
